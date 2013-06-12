@@ -1,6 +1,10 @@
 require 'redmine'
 
-require_dependency 'hooks/view_layouts_base_html_head_hook'
+Rails.configuration.to_prepare do
+  require 'patches/application_helper_patch'
+  require 'hooks/view_layouts_base_html_head_hook'
+  require 'patches/attachments_controller_patch'
+end
 
 Redmine::Plugin.register :redmine_lightbox do
   name 'Redmine Light Box plugin'
